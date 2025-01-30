@@ -8,7 +8,7 @@ import React, {
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import envConfig from '../config/env.config';
-import { ApiResponseData } from '../types/api';
+import { ApiResponseData } from '../types/api.type';
 
 interface HttpMethodContextType {
   showApiLoader: boolean;

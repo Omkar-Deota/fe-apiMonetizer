@@ -3,3 +3,5 @@ export const userStatus = {
   inactive: 'INACTIVE',
   loggedIn: 'LOGGED_IN'
 };
+
+export const returnToLocalStorageKey = 'returnTo';
