@@ -2,13 +2,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router';
 import { useCookies } from 'react-cookie';
-import { returnToLocalStorageKey, userStatus } from '../utils/constants';
-import { IUser } from '../types/user.type';
-import { useAppContext } from '../context/AppContextProvider';
-import useUserApi from '../hooks/api/useUserApi';
+import { returnToLocalStorageKey } from '../utils/constants';
 import useAuthLogin from '../hooks/api/useAuthLogin';
-import { IUserResponse } from '../types/api.type';
-import { USER_ROLES } from '../utils/enum';
 
 const useHandleAuthentication = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -17,8 +12,6 @@ const useHandleAuthentication = () => {
   console.log('removeCookie', removeCookie); // Todo:- might add later
   const { user: auth0User, isAuthenticated } = useAuth0();
 
-  const { setUserData, setIsLoggedIn } = useAppContext();
-  const { getUserByExternalId, getUserSelfData } = useUserApi();
   const { authLogin } = useAuthLogin();
 
   const handleAuthentication = useCallback(async () => {
@@ -36,7 +29,7 @@ const useHandleAuthentication = () => {
     try {
       const response = await authLogin(payload);
       if (!auth0User?.email_verified && isAuthenticated) {
-        navigate('/verification');
+        navigate('/home');
         return;
       }
 
@@ -48,43 +41,7 @@ const useHandleAuthentication = () => {
       navigate('/error');
       return;
     }
-    const { response, success } = await getUserByExternalId<IUser>(
-      auth0User.sub,
-      false
-    );
-
-    if (!success) {
-      navigate('/error');
-      return;
-    }
-
-    setUserData(response);
-    setIsLoggedIn(true);
-    if (response?.role) {
-      let expectedPath;
-
-      if (response.role === USER_ROLES.ADMIN) {
-        expectedPath = '/app/admin-dashboard';
-      } else if (response.role === USER_ROLES.USER) {
-        // check if subscription
-        const { response } = await getUserSelfData<IUserResponse>(false);
-        if (
-          [userStatus.active, userStatus.inactive].includes(
-            response?.user?.status
-          )
-        ) {
-          expectedPath = '/app/user-dashboard';
-        } else {
-          expectedPath = '/home';
-        }
-      } else {
-        expectedPath = '/home';
-      }
-
-      const returnToPathName = cookie.returnTo ?? expectedPath;
-      console.log(response);
-      navigate(returnToPathName);
-    }
+    navigate('/home');
   }, [
     auth0User?.email,
     auth0User?.email_verified,
@@ -93,13 +50,8 @@ const useHandleAuthentication = () => {
     auth0User?.picture,
     auth0User?.sub,
     authLogin,
-    cookie.returnTo,
-    getUserByExternalId,
-    getUserSelfData,
     isAuthenticated,
-    navigate,
-    setIsLoggedIn,
-    setUserData
+    navigate
   ]);
 
   return { handleAuthentication };
