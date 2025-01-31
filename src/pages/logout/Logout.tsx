@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { Spinner } from '@nextui-org/react';
-import { isObjectEmpty } from '../../utils';
 import { useNavigate } from 'react-router';
 import { useAppContext } from '../../context/AppContextProvider';
+import { Spinner } from '@heroui/react';
+import { isObjectEmpty } from '../../utils/helperFunctions';
 
 function Logout() {
   const navigate = useNavigate();
   const { isAuthenticated, logout } = useAuth0();
-  const { isLoggedIn, adminUserData, clearSession } = useAppContext();
+  const { isLoggedIn, userData, clearSession } = useAppContext();
 
   useEffect(() => {
     const logoutUser = async () => {
@@ -22,17 +22,10 @@ function Logout() {
       }
     };
 
-    if (isAuthenticated || isLoggedIn || !isObjectEmpty(adminUserData)) {
+    if (isAuthenticated || isLoggedIn || !isObjectEmpty(userData)) {
       logoutUser();
     }
-  }, [
-    adminUserData,
-    clearSession,
-    isAuthenticated,
-    isLoggedIn,
-    logout,
-    navigate
-  ]);
+  }, [userData, clearSession, isAuthenticated, isLoggedIn, logout, navigate]);
 
   return (
     <div className="flex h-screen w-screen items-center justify-center">

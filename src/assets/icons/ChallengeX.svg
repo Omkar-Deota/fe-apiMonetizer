@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="119px" height="159px" viewBox="0 0 119 159" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-3" transform="translate(-820.000000, -386.000000)">
+            <g id="Group" transform="translate(820.000000, 387.000000)">
+                <polygon id="Fill-31" fill="#000000" points="58.1162 152.4656 0.4552 47.4726 1.4332 44.6856 2.3262 43.8706 75.9542 157.1976 65.6582 156.2706"></polygon>
+                <polygon id="Fill-32" fill="#000000" points="2.6474 118.2061 1.1864 116.8681 0.4554 114.8001 58.0604 6.1151 65.5574 1.5521 75.6064 0.4051"></polygon>
+                <path d="M22.3264,80.3812 L64.6334,80.3812" id="Stroke-33" stroke="#000000" stroke-width="1.208" stroke-linejoin="round"></path>
+                <path d="M43.4807,47.5396 L64.6347,80.3826" id="Stroke-34" stroke="#000000" stroke-width="1.208"></path>
+                <path d="M118.2395,3.0843 L64.6355,80.3813" id="Stroke-35" stroke="#000000" stroke-width="1.208"></path>
+                <path d="M43.0805,113.4825 L64.6335,80.3805" id="Stroke-36" stroke="#000000" stroke-width="1.208"></path>
+                <g id="Group-41" stroke="#000000" stroke-width="1.208">
+                    <path d="M114.9974,6.408 C114.9974,6.408 56.7634,41.966 50.0474,46.141 C44.7414,49.126 45.5004,48.238 43.1404,48.524 C40.6674,48.828 37.3234,48.833 34.3284,48.833 L5.4584,48.833 C-0.3816,48.833 -1.0666,46.051 3.9354,42.618 L60.2194,4.66 C65.2214,1.232 67.5194,0.198 84.5984,0.198 L113.4744,0.198 C119.3134,0.198 119.9994,2.98 114.9974,6.408 Z" id="Stroke-37"></path>
+                    <path d="M114.2448,151.7592 L53.9588,119.0562 C48.9568,116.0382 40.1678,113.5882 34.3288,113.5882 L5.4528,113.5882 C-0.3862,113.5882 -1.0722,116.0382 3.9298,119.0562 L59.4668,153.2992 C64.4688,156.3172 66.7668,157.2272 83.8458,157.2272 L112.7218,157.2272 C118.5608,157.2272 119.2468,154.7772 114.2448,151.7592 Z" id="Stroke-39"></path>
+                </g>
+                <path d="M117.3184,154.4253 L64.6364,80.3823" id="Stroke-42" stroke="#000000" stroke-width="1.208"></path>
+            </g>
+        </g>
+    </g>
+</svg>

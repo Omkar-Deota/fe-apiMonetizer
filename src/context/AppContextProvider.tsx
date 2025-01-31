@@ -3,38 +3,49 @@ import React, {
   useContext,
   useState,
   ReactNode,
-  useCallback
+  useCallback,
+  useMemo
 } from 'react';
-import { IAppContextType, IAdminUser } from '../types/user.type';
+import { IAppContextType, IUser } from '../types/user.type';
 
 const AppContext = createContext<IAppContextType | undefined>(undefined);
 
 export const AppContextProvider: React.FC<{ children: ReactNode }> = ({
   children
 }) => {
-  const [adminUserData, setAdminUserData] = useState<IAdminUser | undefined>(
-    undefined
-  );
+  const [userData, setUserData] = useState<IUser | undefined>(undefined);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [selectedPermissionModule, setSelectedPermissionModule] = useState<
+    Permissions | undefined
+  >(undefined);
 
   const clearSession = useCallback(() => {
-    setAdminUserData(undefined);
+    setUserData(undefined);
     setIsLoggedIn(false);
   }, []);
 
-  return (
-    <AppContext.Provider
-      value={{
-        adminUserData,
-        setAdminUserData,
-        isLoggedIn,
-        setIsLoggedIn,
-        clearSession
-      }}
-    >
-      {children}
-    </AppContext.Provider>
+  const value = useMemo(
+    () => ({
+      userData,
+      setUserData,
+      isLoggedIn,
+      setIsLoggedIn,
+      clearSession,
+      selectedPermissionModule,
+      setSelectedPermissionModule
+    }),
+    [
+      userData,
+      setUserData,
+      isLoggedIn,
+      setIsLoggedIn,
+      clearSession,
+      selectedPermissionModule,
+      setSelectedPermissionModule
+    ]
   );
+
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
