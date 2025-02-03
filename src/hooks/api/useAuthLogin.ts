@@ -13,7 +13,7 @@ const useAuthLogin = () => {
     };
 
     const response: ApiResponseData<T> = await post(
-      '/auth/admin/login',
+      '/auth/login',
       payload,
       true,
       headers

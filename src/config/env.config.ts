@@ -1,8 +1,12 @@
 export default {
-  API_URL: import.meta.env.VITE_API_URL,
+  API_BASE_URL: import.meta.env.VITE_API_BASE_URL,
+  SP_API_KEY: import.meta.env.VITE_API_SP_API_KEY,
   APP_ENVIRONMENT: import.meta.env.VITE_APP_ENVIRONMENT,
-  VITE_AUTH0_DOMAIN: import.meta.env.VITE_AUTH0_DOMAIN,
-  VITE_AUTH0_CLIENT_ID: import.meta.env.VITE_AUTH0_CLIENT_ID,
-  VITE_AUTH0_REDIRECT: import.meta.env.VITE_AUTH0_REDIRECT,
-  SP_API_KEY: import.meta.env.VITE_SP_API_KEY
+  auth0: {
+    redirect: import.meta.env.VITE_AUTH0_REDIRECT,
+    audience: import.meta.env.VITE_AUTH0_AUDIENCE,
+    clientId: import.meta.env.VITE_AUTH0_CLIENT_ID,
+    domain: import.meta.env.VITE_AUTH0_DOMAIN,
+    scope: import.meta.env.VITE_AUTH0_SCOPE
+  }
 };

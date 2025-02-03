@@ -45,7 +45,7 @@ export const HttpMethodContext = createContext<
 >(undefined);
 
 const AxiosService = axios.create({
-  baseURL: envConfig.API_URL
+  baseURL: envConfig.API_BASE_URL
 });
 
 const createApiErrorResponse = <T,>(error: unknown): ApiResponseData<T> => {

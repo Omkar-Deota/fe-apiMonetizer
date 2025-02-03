@@ -5,13 +5,12 @@ import env from './config/env.config';
 import { HeroUIProvider } from '@heroui/react';
 import { AppContextProvider } from './context/AppContextProvider';
 function App() {
-  console.log(env.VITE_AUTH0_CLIENT_ID, env.VITE_AUTH0_DOMAIN);
   return (
     <Auth0Provider
-      domain={env.VITE_AUTH0_DOMAIN}
-      clientId={env.VITE_AUTH0_CLIENT_ID}
+      domain={env.auth0.domain}
+      clientId={env.auth0.clientId}
       authorizationParams={{
-        redirect_uri: env.VITE_AUTH0_REDIRECT
+        redirect_uri: env.auth0.redirect
       }}
     >
       <HttpMethodContextProvider>
