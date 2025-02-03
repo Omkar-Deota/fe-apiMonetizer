@@ -1,24 +1,30 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router';
-import { useCookies } from 'react-cookie';
 import { useAppContext } from '../context/AppContextProvider';
 import { IUser } from '../types/user.type';
-import { returnToLocalStorageKey } from '../utils/constants';
 import useUserApi from './api/useUserApi';
 import useAuthLogin from './api/useAuthLogin';
 import { AuthLoginPayload } from '../types/api.type';
 
 const useHandleAuthentication = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [cookie, _, removeCookie] = useCookies([returnToLocalStorageKey]);
-
   const navigate = useNavigate();
 
   const { user: auth0User, isAuthenticated } = useAuth0();
   const { setUserData, setIsLoggedIn } = useAppContext();
   const { getUserByExternalId } = useUserApi();
   const { authLogin } = useAuthLogin();
+
+  const roleBasedRedirection = useCallback(
+    (role: string) => {
+      if (role === 'ADMIN') {
+        navigate('/app/admin-dashboard');
+      }
+
+      navigate('/app/user-dashboard');
+    },
+    [navigate]
+  );
 
   const handleAuthentication = useCallback(async () => {
     if (!auth0User?.email || !auth0User?.sub || !isAuthenticated) return;
@@ -33,14 +39,9 @@ const useHandleAuthentication = () => {
     };
 
     try {
-      const response = await authLogin(payload);
+      const response = await authLogin<IUser>(payload);
       if (!response.success) {
         navigate('/error');
-        return;
-      }
-
-      if (isAuthenticated) {
-        navigate('/app/dashboard');
         return;
       }
     } catch {
@@ -60,12 +61,7 @@ const useHandleAuthentication = () => {
 
     setUserData(response);
     setIsLoggedIn(true);
-
-    const returnToPathName = cookie.returnTo ?? '/app/dashboard';
-
-    navigate(returnToPathName);
-
-    removeCookie(returnToLocalStorageKey);
+    roleBasedRedirection(response?.role as string);
   }, [
     auth0User?.email_verified,
     auth0User?.family_name,
@@ -73,14 +69,13 @@ const useHandleAuthentication = () => {
     auth0User?.picture,
     auth0User?.email,
     auth0User?.sub,
-    cookie.returnTo,
     getUserByExternalId,
     isAuthenticated,
     navigate,
-    removeCookie,
     setUserData,
     setIsLoggedIn,
-    authLogin
+    authLogin,
+    roleBasedRedirection
   ]);
 
   return { handleAuthentication };
