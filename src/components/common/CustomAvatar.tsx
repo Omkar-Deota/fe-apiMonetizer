@@ -1,4 +1,4 @@
-import { AvatarProps, AvatarIcon, useAvatar } from '@heroui/react';
+import { AvatarIcon, AvatarProps, useAvatar } from '@heroui/react';
 import { forwardRef, useMemo, useCallback, useState } from 'react';
 
 const CustomAvatar = forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {

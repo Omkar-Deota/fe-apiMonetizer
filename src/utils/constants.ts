@@ -4,8 +4,13 @@ import {
   ApiKeyManagementIcon,
   ManageSubscription,
   MonitoringLogsIcon,
-  SettingsIcon
+  SettingsIcon,
+  TotalSubscriptions,
+  TotalUsers,
+  TotalAPiCallIcon,
+  MonthlyRevenue
 } from '../assets/icons';
+import { ISubscriptionStatisticsCard } from '../components/cards/types';
 import { SidePanelItem } from '../types/api.type';
 import { USER_ROLES } from './enum';
 
@@ -68,3 +73,41 @@ export const sidePanelItems: SidePanelItem[] = [
   }
 ];
 
+export const subscriptionStats: ISubscriptionStatisticsCard[] = [
+  {
+    title: 'Total Subscribers',
+    Icon: TotalSubscriptions,
+    value: '12,345',
+    percentage: '5%',
+    trend: 'up',
+    variance: '10%',
+    subText: 'Growth compared to last month'
+  },
+  {
+    title: 'Active Users',
+    Icon: TotalUsers,
+    value: '8,765',
+    percentage: '2%',
+    trend: 'down',
+    variance: '3%',
+    subText: 'Users active in the past 30 days'
+  },
+  {
+    title: 'Churn Rate',
+    Icon: TotalAPiCallIcon,
+    value: '4.5%',
+    percentage: '1%',
+    trend: 'up',
+    variance: '5%',
+    subText: 'Percentage of users who unsubscribed'
+  },
+  {
+    title: 'Revenue',
+    Icon: MonthlyRevenue,
+    value: '$34,567',
+    percentage: '8%',
+    trend: 'up',
+    variance: '12%',
+    subText: 'Revenue from subscriptions this month'
+  }
+];

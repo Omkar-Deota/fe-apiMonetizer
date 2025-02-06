@@ -8,6 +8,8 @@ import Home from './pages/home/HomePage';
 import ProtectedRoute from './ProtectedRoutes';
 import Logout from './pages/logout/Logout';
 import Layout from './pages/layout/Layout';
+import AdminDashboard from './pages/dashboard/AdminDashboard';
+import { USER_ROLES } from './utils/enum';
 // import NotFound from '../pages/notFound/NotFound';
 // import { USER_ROLES } from './utils/enum';
 
@@ -34,14 +36,14 @@ const Routes = () => {
               </ProtectedRoute>
             }
           /> */}
-          {/* <Route
+          <Route
             path="admin-dashboard"
             element={
               <ProtectedRoute requiredRoles={[USER_ROLES.ADMIN]}>
                 <AdminDashboard />
               </ProtectedRoute>
             }
-          /> */}
+          />
         </Route>
         {/* <Route path="*" element={<NotFound />} /> */}
       </AppRoutes>

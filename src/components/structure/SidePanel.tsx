@@ -1,20 +1,16 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import Logo from '../../assets/images/Logo.svg';
-import { useAppContext } from '../../context/AppContextProvider';
 import { sidePanelItems } from '../../utils/constants';
-
-interface SidePanelProps {
+interface SidePanelitem {
   isSidepanelOpen: boolean;
   closePanel: () => void;
 }
 
-const SidePanel: React.FC<SidePanelProps> = ({
+const SidePanel: React.FC<SidePanelitem> = ({
   isSidepanelOpen,
   closePanel
 }) => {
   const { pathname } = useLocation();
-  const { userData } = useAppContext();
 
   const getCurrentRoute = () => {
     const segments = pathname.split('/');
@@ -27,37 +23,31 @@ const SidePanel: React.FC<SidePanelProps> = ({
 
   const getClassName = (key: string) => {
     const isActive = key === currentTab;
+
     return `flex items-center gap-3 text-sm font-medium h-10 rounded-lg px-4 ${
       isActive ? 'bg-light-blue text-blue' : 'text-gray-500'
     }`;
   };
 
   const renderSidePanelItems = () => (
-    <div className="h-full overflow-y-auto overflow-x-hidden scrollbar-hide md:scrollbar-default">
-      <ul className="space-y-5 mt-12 md:mt-4">
-        {sidePanelItems.map(({ ...props }) => {
-          if (
-            props.requiredRoles &&
-            (!userData?.role || !props.requiredRoles.includes(userData?.role))
-          ) {
-            return null;
-          }
-
+    <div className="h-full overflow-y-auto overflow-x-hidden scrollbar-hide mt-10">
+      <ul className="space-y-5">
+        {sidePanelItems.map(({ ...item }) => {
           return (
             <li
-              key={props.key}
+              key={item.key}
               className={`select-none ${
-                props.mobileOnly ? 'block md:hidden' : ''
+                item.mobileOnly ? 'block md:hidden' : ''
               }`}
             >
               <Link
-                to={props.url}
-                className={getClassName(props.key)}
+                to={item.url}
+                className={getClassName(item.key)}
                 onClick={closePanel}
               >
-                <props.Icon />
+                <item.Icon />
                 <span className="whitespace-nowrap overflow-hidden text-ellipsis">
-                  {props.label}
+                  {item.label}
                 </span>
               </Link>
             </li>
@@ -73,11 +63,11 @@ const SidePanel: React.FC<SidePanelProps> = ({
         isSidepanelOpen ? 'translate-x-0' : '-translate-x-full'
       } md:translate-x-0 md:w-48 xl:w-64 p-4 xl:p-7`}
     >
-      <div className="absolute top-0 left-0 right-0 bg-off-white h-10 flex items-center justify-center">
-        <Logo />
-      </div>
+      <p className="text-2xl text-center font-bold shadow-xl">
+        Prop<span className="text-blue">Stream</span>
+      </p>
 
-      <div className="mt-[3rem] md:mt-20">{renderSidePanelItems()}</div>
+      {renderSidePanelItems()}
     </aside>
   );
 };

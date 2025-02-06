@@ -6,6 +6,7 @@ import { IUser } from '../types/user.type';
 import useUserApi from './api/useUserApi';
 import useAuthLogin from './api/useAuthLogin';
 import { AuthLoginPayload } from '../types/api.type';
+import { USER_ROLES } from '../utils/enum';
 
 const useHandleAuthentication = () => {
   const navigate = useNavigate();
@@ -14,17 +15,6 @@ const useHandleAuthentication = () => {
   const { setUserData, setIsLoggedIn } = useAppContext();
   const { getUserByExternalId } = useUserApi();
   const { authLogin } = useAuthLogin();
-
-  const roleBasedRedirection = useCallback(
-    (role: string) => {
-      if (role === 'ADMIN') {
-        navigate('/app/admin-dashboard');
-      }
-
-      navigate('/app/user-dashboard');
-    },
-    [navigate]
-  );
 
   const handleAuthentication = useCallback(async () => {
     if (!auth0User?.email || !auth0User?.sub || !isAuthenticated) return;
@@ -61,7 +51,26 @@ const useHandleAuthentication = () => {
 
     setUserData(response);
     setIsLoggedIn(true);
-    roleBasedRedirection(response?.role as string);
+
+    if (response.role === USER_ROLES.ADMIN) {
+      navigate('/app/admin-dashboard');
+    } else {
+      //   // check if subscription
+      //   const { response } = await getUserSelfData<UserSelfResponse>(false);
+      //   if (
+      //     [userStatus.active, userStatus.inactive].includes(
+      //       response?.user?.status
+      //     )
+      //   ) {
+      //     expectedPath = '/app/user-dashboard';
+      //   } else {
+      //     expectedPath = '/home';
+      //   }
+      // } else {
+      //   expectedPath = '/home';
+      // }
+      navigate('/app/user-dashboard');
+    }
   }, [
     auth0User?.email_verified,
     auth0User?.family_name,
@@ -74,8 +83,7 @@ const useHandleAuthentication = () => {
     navigate,
     setUserData,
     setIsLoggedIn,
-    authLogin,
-    roleBasedRedirection
+    authLogin
   ]);
 
   return { handleAuthentication };

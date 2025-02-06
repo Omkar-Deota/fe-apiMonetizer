@@ -8,7 +8,7 @@ import {
   DropdownItem
 } from '@heroui/react';
 import { useAppContext } from '../../context/AppContextProvider';
-import { ChevronDown } from '../../assets/icons';
+// import { ChevronDown } from '../../assets/icons';
 import CustomAvatar from '../common/CustomAvatar';
 
 const Profile: React.FC = () => {
@@ -48,7 +48,7 @@ const Profile: React.FC = () => {
           />
 
           <div className={`transition-transform ${isOpen && 'rotate-180'}`}>
-            <ChevronDown />
+            {/* <ChevronDown /> */}
           </div>
         </div>
       </DropdownTrigger>
