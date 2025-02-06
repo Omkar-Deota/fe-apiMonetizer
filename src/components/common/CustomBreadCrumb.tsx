@@ -1,11 +1,11 @@
-import React from "react";
-import { HomeIcon } from "../../assets/icons";
-import { Link } from "react-router-dom";
-import { IBreadCrumb } from "./type";
+import React from 'react';
+import { HomeIcon } from '../../assets/icons';
+import { Link } from 'react-router-dom';
+import { IBreadCrumb } from './common.type';
 
 const CustomBreadcrumbs: React.FC<IBreadCrumb> = ({ items }) => {
-  const labels = items.split(">");
-  const separator = <span className="ml-2 font-normal">{">"}</span>;
+  const labels = items.split('>');
+  const separator = <span className="ml-2 font-normal">{'>'}</span>;
 
   return (
     <div className="md:flex items-center gap-2 hidden">
@@ -18,12 +18,12 @@ const CustomBreadcrumbs: React.FC<IBreadCrumb> = ({ items }) => {
             <p
               className={`text-sm ${
                 isLast
-                  ? "text-blue font-semibold"
-                  : "font-semibold text-dark-gray"
+                  ? 'text-blue font-semibold'
+                  : 'font-semibold text-dark-gray'
               }`}
             >
               <Link
-                to={`/app/${label.toLowerCase().split(" ").join("-")}`}
+                to={`/app/${label.toLowerCase().split(' ').join('-')}`}
                 className="hover:text-dark-blue"
               >
                 {label}

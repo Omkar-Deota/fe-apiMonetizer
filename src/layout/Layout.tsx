@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import Nav from '../../components/structure/Nav';
-import SidePanel from '../../components/structure/SidePanel';
-import Wrapper from '../../components/structure/Wrapper';
+import Nav from '../components/structure/Nav';
+import SidePanel from '../components/structure/SidePanel';
+import Wrapper from '../components/structure/Wrapper';
 
 const Layout: React.FC = () => {
   const location = useLocation();

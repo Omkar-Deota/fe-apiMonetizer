@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 
-import { CustomCardProps } from './type';
+import { CustomCardProps } from './common.type';
 import { Card, CardBody } from '@heroui/react';
 
 export const CustomCard: React.FC<CustomCardProps> = ({

@@ -2,13 +2,12 @@ import React from 'react';
 import { Navigate, useLocation } from 'react-router';
 import { useCookies } from 'react-cookie';
 import { returnToLocalStorageKey } from './utils/constants';
-import { NonEmptyArray } from './types/api.type';
 import { USER_ROLES } from './utils/enum';
 import { useAppContext } from './context/AppContextProvider';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
-  requiredRoles?: NonEmptyArray<USER_ROLES>;
+  requiredRoles?: USER_ROLES;
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({

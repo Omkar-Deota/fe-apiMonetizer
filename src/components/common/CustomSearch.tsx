@@ -1,5 +1,5 @@
 import { Input } from "@heroui/react'";
-import { ICustomSearchProps } from './type';
+import { ICustomSearchProps } from './common.type';
 import { SearchIcon } from '../../assets/icons';
 
 export const CustomSearch: React.FC<ICustomSearchProps> = ({

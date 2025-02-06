@@ -6,6 +6,7 @@ export interface IFetchUserParam {
   limit?: number;
   showApiLoader?: boolean;
 }
+
 const useUserApi = () => {
   const { get } = useHttpMethodContext();
 
@@ -22,6 +23,7 @@ const useUserApi = () => {
     },
     [get]
   );
+
   const getAllUsers = useCallback(
     async <T>({
       showApiLoader = false,

@@ -45,6 +45,6 @@ export interface SidePanelItem {
   label: string;
   url: string;
   Icon: string;
-  requiredRoles?: NonEmptyArray<USER_ROLES>;
+  requiredRoles?: USER_ROLES;
   mobileOnly?: boolean;
 }

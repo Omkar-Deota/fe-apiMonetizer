@@ -1,4 +1,4 @@
-import { CardProps } from "@heroui/react'";
+import { CardProps } from '@heroui/react';
 
 export interface IBreadCrumb {
   items: string;

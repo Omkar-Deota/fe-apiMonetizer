@@ -28,21 +28,21 @@ export const sidePanelItems: SidePanelItem[] = [
     label: 'Dashboard',
     url: '/app/admin-dashboard',
     Icon: DashboardIcon,
-    requiredRoles: [USER_ROLES.ADMIN]
+    requiredRoles: USER_ROLES.ADMIN
   },
   {
     key: 'user-dashboard',
     label: 'User Dashboard',
     url: '/app/user-dashboard',
     Icon: DashboardIcon,
-    requiredRoles: [USER_ROLES.USER]
+    requiredRoles: USER_ROLES.USER
   },
   {
     key: 'user-management',
     label: 'User Management',
     url: '/app/user-management',
     Icon: UserManagement,
-    requiredRoles: [USER_ROLES.ADMIN]
+    requiredRoles: USER_ROLES.ADMIN
   },
   {
     key: 'api-key-management',
@@ -55,14 +55,14 @@ export const sidePanelItems: SidePanelItem[] = [
     label: 'Manage Subscription',
     url: '/app/manage-subscription',
     Icon: ManageSubscription,
-    requiredRoles: [USER_ROLES.USER]
+    requiredRoles: USER_ROLES.USER
   },
   {
     key: 'monitoring-logs',
     label: 'Monitoring Logs',
     url: '/app/monitoring-logs',
     Icon: MonitoringLogsIcon,
-    requiredRoles: [USER_ROLES.ADMIN]
+    requiredRoles: USER_ROLES.ADMIN
   },
   {
     key: 'settings',
@@ -78,36 +78,54 @@ export const subscriptionStats: ISubscriptionStatisticsCard[] = [
     title: 'Total Subscribers',
     Icon: TotalSubscriptions,
     value: '12,345',
-    percentage: '5%',
+    percentage: '5',
     trend: 'up',
-    variance: '10%',
+    variance: '10',
     subText: 'Growth compared to last month'
   },
   {
     title: 'Active Users',
     Icon: TotalUsers,
     value: '8,765',
-    percentage: '2%',
+    percentage: '2',
     trend: 'down',
-    variance: '3%',
+    variance: '3',
     subText: 'Users active in the past 30 days'
   },
   {
-    title: 'Churn Rate',
+    title: 'API Calls',
     Icon: TotalAPiCallIcon,
-    value: '4.5%',
-    percentage: '1%',
+    value: '4.5',
+    percentage: '1',
     trend: 'up',
-    variance: '5%',
+    variance: '5',
     subText: 'Percentage of users who unsubscribed'
   },
   {
     title: 'Revenue',
     Icon: MonthlyRevenue,
     value: '$34,567',
-    percentage: '8%',
+    percentage: '8',
     trend: 'up',
-    variance: '12%',
+    variance: '12',
     subText: 'Revenue from subscriptions this month'
   }
 ];
+
+export const intervals = [
+  { key: 'Daily', label: 'Daily' },
+  { key: 'Monthly', label: 'Monthly' },
+  { key: 'yearly', label: 'Yearly' }
+];
+
+export const labels = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July'
+];
+
+export const chartData = [12, 1212, 12, 221, 22, 1221, 5000];

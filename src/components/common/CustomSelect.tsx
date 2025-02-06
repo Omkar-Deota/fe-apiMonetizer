@@ -7,7 +7,7 @@ import {
   Checkbox
 } from "@heroui/react'";
 import { FilterIcon } from '../../assets/icons';
-import { ICustomSelect } from './type';
+import { ICustomSelect } from './common.type';
 
 export const CustomSelect: React.FC<ICustomSelect> = ({
   options,

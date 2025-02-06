@@ -1,14 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem
-} from '@heroui/react';
 import { useAppContext } from '../../context/AppContextProvider';
-// import { ChevronDown } from '../../assets/icons';
+import { ChevronDown } from '../../assets/icons';
 import CustomAvatar from '../common/CustomAvatar';
 
 const Profile: React.FC = () => {
@@ -17,63 +11,72 @@ const Profile: React.FC = () => {
   const { loginWithRedirect, isAuthenticated } = useAuth0();
 
   const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const handleOpenChange = (open: boolean) => {
-    setIsOpen(open);
+  const toggleDropdown = () => {
+    setIsOpen((prev) => !prev);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setIsOpen(false);
+    }
   };
 
   useEffect(() => {
-    const handleCloseDropdown = () => {
-      setIsOpen(false);
-    };
-
-    window.addEventListener('resize', handleCloseDropdown);
-    window.addEventListener('scroll', handleCloseDropdown);
+    window.addEventListener('click', handleClickOutside);
+    window.addEventListener('resize', () => setIsOpen(false));
+    window.addEventListener('scroll', () => setIsOpen(false));
 
     return () => {
-      window.removeEventListener('resize', handleCloseDropdown);
-      window.removeEventListener('scroll', handleCloseDropdown);
+      window.removeEventListener('click', handleClickOutside);
+      window.removeEventListener('resize', () => setIsOpen(false));
+      window.removeEventListener('scroll', () => setIsOpen(false));
     };
   }, []);
 
   return (
-    <Dropdown isOpen={isOpen} onOpenChange={handleOpenChange}>
-      <DropdownTrigger>
-        <div className="flex items-center gap-1 cursor-pointer relative">
-          <CustomAvatar
-            src={userData?.picture}
-            name={userData?.firstName}
-            size="md"
-            className="w-10 h-10"
-          />
+    <div className="relative" ref={dropdownRef}>
+      <button
+        onClick={toggleDropdown}
+        className={`flex items-center gap-1 cursor-pointer ${
+          isOpen && 'opacity-50'
+        }`}
+      >
+        <CustomAvatar
+          src={userData?.picture}
+          name={userData?.firstName}
+          size="md"
+          className="w-10 h-10"
+        />
 
-          <div className={`transition-transform ${isOpen && 'rotate-180'}`}>
-            {/* <ChevronDown /> */}
-          </div>
+        <div className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}>
+          <ChevronDown />
         </div>
-      </DropdownTrigger>
-      <DropdownMenu>
-        <DropdownItem
-          key={'my-profile'}
-          onPress={() => navigate('/app/settings')}
-        >
-          My Profile
-        </DropdownItem>
-        {isAuthenticated ? (
-          <DropdownItem
-            onPress={() => navigate('/logout')}
-            key="logout"
-            className="text-error"
+      </button>
+
+      {isOpen && (
+        <div className="absolute right-0 mt-10 w-40 bg-off-white shadow-md rounded-xl text-center flex flex-col gap-2 p-2">
+          <button
+            onClick={() => navigate('/app/settings')}
+            className="text-cool-blue"
           >
-            Logout
-          </DropdownItem>
-        ) : (
-          <DropdownItem onPress={() => loginWithRedirect()} key="login">
-            Login
-          </DropdownItem>
-        )}
-      </DropdownMenu>
-    </Dropdown>
+            My Profile
+          </button>
+
+          {isAuthenticated ? (
+            <button onClick={() => navigate('/logout')} className="text-error">
+              Logout
+            </button>
+          ) : (
+            <button onClick={() => loginWithRedirect()}>Login</button>
+          )}
+        </div>
+      )}
+    </div>
   );
 };
 
