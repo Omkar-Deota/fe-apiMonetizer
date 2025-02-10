@@ -30,3 +30,16 @@ export interface ICustomSearchProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
+export interface ISearchSectionProp {
+  placeHolder: string;
+  value: string;
+  handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  filterOption?: IFilterOption[];
+  onFilterChange?: (selectedFilters: Set<string>) => void;
+}
+
+export interface IFilterOption {
+  label: string;
+  value: string;
+}

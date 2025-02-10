@@ -5,7 +5,7 @@ import {
   DropdownMenu,
   DropdownItem,
   Checkbox
-} from "@heroui/react'";
+} from "@heroui/react";
 import { FilterIcon } from '../../assets/icons';
 import { ICustomSelect } from './common.type';
 

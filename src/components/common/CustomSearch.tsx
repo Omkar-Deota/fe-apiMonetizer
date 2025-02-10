@@ -1,4 +1,4 @@
-import { Input } from "@heroui/react'";
+import { Input } from "@heroui/react";
 import { ICustomSearchProps } from './common.type';
 import { SearchIcon } from '../../assets/icons';
 
