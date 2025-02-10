@@ -43,6 +43,9 @@ import InstagramIcon from './InstagramLogo.svg';
 import FacebookIcon from './FacebookLogo.svg';
 import ChallengeXIcon from './ChallengeX.svg';
 import Logo from './Logo.svg';
+import ChevronLeft from './ChevronLeft.svg';
+import ChevronRight from './ChevronRight.svg';
+import FilteredIcon from './filteredIcon.svg';
 export {
   AddIcon,
   AlertIcon,
@@ -51,12 +54,15 @@ export {
   ArrowDown,
   ArrowUp,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   DashboardIcon,
   DeleteIcon,
   EditIcon,
   EyeIcon,
   FilterIcon,
   FilledAddIcon,
+  FilteredIcon,
   HomeIcon,
   Logo,
   MenuDots,

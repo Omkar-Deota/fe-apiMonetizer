@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CustomSearch } from '../../components/common/CustomSearch';
 import { ISearchSectionProp } from './common.type';
-import { AddIcon, FilterIcon } from '../../assets/icons';
+import { FilteredIcon, FilterIcon } from '../../assets/icons';
 import {
   Dropdown,
   DropdownTrigger,
@@ -34,7 +34,7 @@ const SearchSection: React.FC<ISearchSectionProp> = ({
         <Dropdown placement="bottom-start" closeOnSelect={false}>
           <DropdownTrigger>
             <div className="flex items-center cursor-pointer p-3 ">
-              {selectedFilters.length > 0 ? <AddIcon /> : <FilterIcon />}
+              {selectedFilters.length > 0 ? <FilteredIcon /> : <FilterIcon />}
             </div>
           </DropdownTrigger>
           <DropdownMenu

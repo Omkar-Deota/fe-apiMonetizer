@@ -30,7 +30,7 @@ const Layout: React.FC = () => {
   );
 
   return (
-    <div className="relative">
+    <div className="mih-h-screen w-full">
       <Nav toggleSidepanel={toggleSidepanel} />
       <SidePanel
         isSidepanelOpen={isSidepanelOpen}

@@ -1,4 +1,5 @@
 import { CardProps } from '@heroui/react';
+import { IUserFilter } from '../../pages/userManagement/userManagement.type';
 
 export interface IBreadCrumb {
   items: string;
@@ -35,11 +36,12 @@ export interface ISearchSectionProp {
   placeHolder: string;
   value: string;
   handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  filterOption?: IFilterOption[];
+  filterOption?: IUserFilter[];
   onFilterChange?: (selectedFilters: Set<string>) => void;
 }
 
-export interface IFilterOption {
-  label: string;
-  value: string;
+export interface ICustomDropDown {
+  Icon?: string;
+  children: React.ReactNode;
+  className?: string;
 }
