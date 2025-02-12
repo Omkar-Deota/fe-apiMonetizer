@@ -7,6 +7,7 @@ import Logout from './pages/logout/Logout';
 import AdminDashboard from './pages/dashboard/AdminDashboard';
 import Layout from './layout/Layout';
 import UserManagement from './pages/userManagement/UserManagement';
+import MonitoringLogs from './pages/monitoringLogs/MonitoringLogs';
 
 const Routes = () => {
   return (
@@ -36,6 +37,14 @@ const Routes = () => {
             element={
               <ProtectedRoute requiredRoles={USER_ROLES.ADMIN}>
                 <UserManagement />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="monitoring-logs"
+            element={
+              <ProtectedRoute requiredRoles={USER_ROLES.ADMIN}>
+                <MonitoringLogs />
               </ProtectedRoute>
             }
           />

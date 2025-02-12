@@ -8,6 +8,15 @@ export interface IUserManagement {
   subscriptionPlan: string;
   status: string;
 }
+export interface IMonitoringLogs {
+  id: string;
+  name: string;
+  email: string;
+  apiKey: string;
+  usageCount: string;
+  paymentMethod: string;
+  status: string;
+}
 
 export interface IUserFilter {
   label: string;
