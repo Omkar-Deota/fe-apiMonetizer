@@ -7,8 +7,10 @@ import {
   UserManagementData,
   UserManagementOptions
 } from '../../utils/constants';
+import useUserApi from '../../hooks/api/useUserApi';
 
 const UserManagement: React.FC = () => {
+  const { getAllUsers } = useUserApi();
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedFilter, setSelectedFilter] = useState<Set<string>>(new Set());
 
@@ -19,6 +21,8 @@ const UserManagement: React.FC = () => {
   const handleUserFilter = (selectedOption: Set<string>) => {
     setSelectedFilter(selectedOption);
   };
+
+  console.log(getAllUsers({}), 'res');
 
   const filteredData = useMemo(() => {
     return UserManagementData.filter((user) => {

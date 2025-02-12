@@ -8,7 +8,7 @@ const Wrapper: React.FC<IWrapper> = ({ children, isCollapsed }) => {
         isCollapsed
           ? 'md:max-w-[calc(100vw-80px)]'
           : 'md:max-w-[calc(100vw-256px)] md:ml-[247px]'
-      } min-h-[calc(100vh-96px)] max-w-full xl:ml-64 pt-20  xl:pt-32 px-4 xl:px-4 pb-8 bg-neutral-grey scroll-auto z-10`}
+      } min-h-[calc(100vh-96px)] max-w-full xl:ml-64 md:pt-28 pt-20  xl:pt-32 px-4 xl:px-4 pb-8 bg-neutral-grey scroll-auto z-10`}
     >
       {children}
     </div>

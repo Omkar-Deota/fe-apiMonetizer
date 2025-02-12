@@ -11,11 +11,16 @@ import { USER_ROLES } from '../utils/enum';
 const useHandleAuthentication = () => {
   const navigate = useNavigate();
 
-  const { user: auth0User, isAuthenticated } = useAuth0();
+  const {
+    user: auth0User,
+    isAuthenticated,
+    getAccessTokenSilently
+  } = useAuth0();
   const { setUserData, setIsLoggedIn } = useAppContext();
   const { getUserByExternalId } = useUserApi();
   const { authLogin } = useAuthLogin();
 
+  console.log(getAccessTokenSilently(), 'res');
   const handleAuthentication = useCallback(async () => {
     if (!auth0User?.email || !auth0User?.sub || !isAuthenticated) return;
 

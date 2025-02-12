@@ -31,7 +31,9 @@ const useUserApi = () => {
       page = 1
     }: IFetchUserParam): Promise<ApiResponseData<T>> => {
       const endpoint = `/user?page=${page}&limit=${limit}`;
+
       const response = await get<T>(endpoint, showApiLoader);
+
       return response;
     },
     [get]
