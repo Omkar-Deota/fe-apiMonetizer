@@ -11,7 +11,7 @@ const AdminDashboard: React.FC = () => {
 
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3">
         {subscriptionStats?.map((stat) => (
-          <SubscriptionStatisticsCard {...stat} />
+          <SubscriptionStatisticsCard {...stat} key={stat.title} />
         ))}
       </div>
 
