@@ -10,7 +10,9 @@ function App() {
       domain={env.auth0.domain}
       clientId={env.auth0.clientId}
       authorizationParams={{
-        redirect_uri: env.auth0.redirect
+        redirect_uri: env.auth0.redirect,
+        audience: env.auth0.audience,
+        scope: env.auth0.scope
       }}
     >
       <HttpMethodContextProvider>
