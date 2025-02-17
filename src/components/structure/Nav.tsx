@@ -6,7 +6,7 @@ import { INavProps } from './structure.type';
 
 const Nav: React.FC<INavProps> = ({ toggleSidepanel }) => {
   return (
-    <nav className="fixed w-full md:h-24 px-4 flex items-center md:justify-end justify-between bg-off-white z-20 top-0">
+    <nav className="fixed w-full md:h-24 h-12 px-4 flex items-center md:justify-end justify-between bg-off-white z-20 top-0">
       <div className="md:hidden block">
         <CustomGreetingMobileView />
       </div>

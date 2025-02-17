@@ -17,7 +17,9 @@ const AuthLoadingScreen = () => {
   }, [handleAuthentication, isAuthenticated, isLoading, loginWithRedirect]);
 
   return (
-    <div className="flex items-center justify-center h-screen">Logging....</div>
+    <div className="flex items-center justify-center h-screen text-3xl font-semibold tracking-wider text-gr">
+      Logging....
+    </div>
   );
 };
 

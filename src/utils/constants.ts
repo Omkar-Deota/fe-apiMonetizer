@@ -354,3 +354,27 @@ export const MonitoringLogsData: IMonitoringLogs[] = [
     status: 'inactive'
   }
 ];
+
+export const invoiceData = [
+  { date: '27/10/2020', amount: '$99' },
+  { date: '27/10/2020', amount: '$99' },
+  { date: '27/10/2020', amount: '$99' },
+  { date: '27/10/2020', amount: '$99' },
+  { date: '27/10/2020', amount: '$99' },
+  { date: '27/10/2020', amount: '$99' },
+  { date: '27/10/2020', amount: '$99' },
+  { date: '27/10/2020', amount: '$99' },
+  { date: '27/10/2020', amount: '$99' },
+  { date: '27/10/2020', amount: '$99' },
+  { date: '27/10/2020', amount: '$99' },
+  { date: '27/10/2020', amount: '$99' },
+  { date: '27/10/2020', amount: '$99' },
+  { date: '27/10/2020', amount: '$99' },
+  { date: '27/10/2020', amount: '$99' },
+  { date: '27/10/2020', amount: '$99' },
+  { date: '27/10/2020', amount: '$99' },
+  { date: '27/10/2020', amount: '$99' },
+  { date: '27/10/2020', amount: '$99' },
+  { date: '27/10/2020', amount: '$99' },
+  { date: '27/10/2020', amount: '$99' }
+];

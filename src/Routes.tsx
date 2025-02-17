@@ -8,6 +8,8 @@ import AdminDashboard from './pages/dashboard/AdminDashboard';
 import Layout from './layout/Layout';
 import UserManagement from './pages/userManagement/UserManagement';
 import MonitoringLogs from './pages/monitoringLogs/MonitoringLogs';
+import UserDashboard from './pages/dashboard/UserDashboard';
+import SubscriptionManagement from './pages/subscription/SubscriptionManagement';
 
 const Routes = () => {
   return (
@@ -45,6 +47,22 @@ const Routes = () => {
             element={
               <ProtectedRoute requiredRoles={USER_ROLES.ADMIN}>
                 <MonitoringLogs />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="user-dashboard"
+            element={
+              <ProtectedRoute requiredRoles={USER_ROLES.USER}>
+                <UserDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="manage-subscription"
+            element={
+              <ProtectedRoute requiredRoles={USER_ROLES.USER}>
+                <SubscriptionManagement />
               </ProtectedRoute>
             }
           />
