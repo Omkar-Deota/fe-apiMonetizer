@@ -46,7 +46,11 @@ export const ApiUsageMatrix = () => {
         <p className="text-primary-black font-semibold text-lg">
           API Usage Matrix
         </p>
-        <Select className="w-40" placeholder="Select interval">
+        <Select
+          className="w-40"
+          placeholder="Select interval"
+          aria-labelledby="Api-matrix"
+        >
           {intervals.map((interval) => (
             <SelectItem key={interval.key}>{interval.label}</SelectItem>
           ))}

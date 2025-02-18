@@ -2,7 +2,7 @@ export interface INavProps {
   toggleSidepanel: () => void;
 }
 
-export interface SidePanelitem {
+export interface ISidePanel {
   isSidepanelOpen: boolean;
   closePanel: () => void;
 }

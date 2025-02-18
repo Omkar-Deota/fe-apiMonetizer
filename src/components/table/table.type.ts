@@ -1,7 +1,4 @@
-import {
-  IMonitoringLogs,
-  IUserManagement
-} from '../../pages/userManagement/userManagement.type';
+import { ITableRows } from '../../pages/userManagement/userManagement.type';
 
 type ColorT =
   | 'success'
@@ -20,7 +17,7 @@ export interface TableColumns {
 }
 
 export interface ITableProps {
-  tableRows: IUserManagement[] | IMonitoringLogs[];
+  tableRows: ITableRows[];
   tableColumns: TableColumns[];
   totalCount?: number;
   nextClick: () => void;

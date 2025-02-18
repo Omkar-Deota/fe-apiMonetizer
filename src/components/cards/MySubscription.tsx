@@ -1,11 +1,11 @@
-import { useNavigate } from "react-router-dom";
-import { WalletIcon } from "../../assets/icons";
-import { CustomCard } from "../common/CustomCard";
+import { useNavigate } from 'react-router-dom';
+import { WalletIcon } from '../../assets/icons';
+import { CustomCard } from '../common/CustomCard';
 export const MySubscription = () => {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate("/app/manage-subscription");
+    navigate('/app/manage-subscription');
   };
 
   return (
@@ -13,6 +13,7 @@ export const MySubscription = () => {
       className="flex flex-col bg-blue rounded-xl md:w-96 w-72 "
       isPressable={true}
       onPress={handleNavigate}
+      aria-labelledby="My-subscription"
     >
       <p className="text-off-white font-semibold text-2xl">
         Your subscription plan

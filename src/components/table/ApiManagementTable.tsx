@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import {
   Chip,
-  // DropdownItem,
   extendVariants,
   Table,
   TableBody,
@@ -12,10 +11,8 @@ import {
   usePagination
 } from '@heroui/react';
 import TablePagination from './TablePagination';
-// import CustomDropDown from '../common/CustomDropDown';
 import { ITableProps } from './table.type';
-import { IUserManagement } from '../../pages/userManagement/userManagement.type';
-// import { UserManagementOptions } from '../../utils/constants';
+import { IApiManagement } from '../../pages/userManagement/userManagement.type';
 import { getColor } from '../../utils/helperFunctions';
 const TableWrapper = extendVariants(Table, {
   variants: {
@@ -32,27 +29,25 @@ const TableWrapper = extendVariants(Table, {
   }
 });
 
-const UserManagementTable: React.FC<ITableProps> = ({
+const ApiManagementTable: React.FC<ITableProps> = ({
   tableRows,
   tableColumns,
   totalCount,
   nextClick,
   showPagination = true
 }) => {
-  const normalizedRows: IUserManagement[] = useMemo(() => {
+  const normalizedRows: IApiManagement[] = useMemo(() => {
     if (Array.isArray(tableRows)) {
       return tableRows.map((row) => {
         if ('id' in row) {
           return {
             id: row.id ?? 'unknown',
-            name: row.name ?? 'unknown',
-            email: row.email ?? 'unknown',
             apiKey: row.apiKey ?? 'unknown',
             apiDescription: row.apiDescription ?? 'unknown',
-            usageCount: row.usageCount ?? 'unknown',
-            subscriptionPlan: row.subscriptionPlan ?? 'unknown',
+            createdDate: row.createdDate ?? 'unknown',
+            usageCount: row.usageCount ?? 0,
             status: row.status
-          } as IUserManagement;
+          } as IApiManagement;
         }
         return row;
       });
@@ -84,13 +79,10 @@ const UserManagementTable: React.FC<ITableProps> = ({
   };
 
   const renderCell = useCallback(
-    (item: IUserManagement, columnKey: React.Key) => {
-      const cellValue = item[columnKey as keyof IUserManagement];
+    (item: IApiManagement, columnKey: React.Key) => {
+      const cellValue = item[columnKey as keyof IApiManagement];
       switch (columnKey) {
-        case 'name': {
-          return <p className="line-clamp-1">{cellValue}</p>;
-        }
-        case 'email': {
+        case 'id': {
           return <p className="line-clamp-1">{cellValue}</p>;
         }
         case 'apiKey': {
@@ -99,10 +91,10 @@ const UserManagementTable: React.FC<ITableProps> = ({
         case 'apiDescription': {
           return <p className="line-clamp-1">{cellValue}</p>;
         }
-        case 'usageCount': {
-          return <p>{cellValue}</p>;
+        case 'createdDate': {
+          return <p className="line-clamp-1">{cellValue}</p>;
         }
-        case 'subscriptionPlan': {
+        case 'usageCount': {
           return <p>{cellValue}</p>;
         }
         case 'status': {
@@ -117,30 +109,13 @@ const UserManagementTable: React.FC<ITableProps> = ({
             </Chip>
           );
         }
-
-        // case 'actions':
-        //   return (
-        //     <CustomDropDown Icon={AddIcon} className="cursor-pointer">
-        //       {UserManagementOptions.map((option) => (
-        //         <DropdownItem
-        //           textValue={option.label}
-        //           key={option.label}
-        //           onPress={() => alert(option.label)}
-        //         >
-        //           <p className="capitalize">
-        //             {item.status === 'active' ? 'Deactivate' : 'Activate'}
-        //           </p>
-        //         </DropdownItem>
-        //       ))}
-        //     </CustomDropDown>
-        //   );
       }
     },
     []
   );
   return (
     <TableWrapper
-      aria-labelledby="survey-table"
+      aria-labelledby="api-table"
       bottomContent={
         showPagination && (
           <TablePagination
@@ -185,4 +160,4 @@ const UserManagementTable: React.FC<ITableProps> = ({
   );
 };
 
-export default UserManagementTable;
+export default ApiManagementTable;

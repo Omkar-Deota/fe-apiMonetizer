@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import {
   Chip,
-  // DropdownItem,
   extendVariants,
   Table,
   TableBody,
@@ -12,11 +11,10 @@ import {
   usePagination
 } from '@heroui/react';
 import TablePagination from './TablePagination';
-// import CustomDropDown from '../common/CustomDropDown';
 import { ITableProps } from './table.type';
-import { IUserManagement } from '../../pages/userManagement/userManagement.type';
-// import { UserManagementOptions } from '../../utils/constants';
+import { IMonitoringLogs } from '../../pages/userManagement/userManagement.type';
 import { getColor } from '../../utils/helperFunctions';
+
 const TableWrapper = extendVariants(Table, {
   variants: {
     colors: {
@@ -39,16 +37,19 @@ const MonitoringLogstable: React.FC<ITableProps> = ({
   nextClick,
   showPagination = true
 }) => {
-  const normalizedRows: IUserManagement[] = useMemo(() => {
+  const normalizedRows: IMonitoringLogs[] = useMemo(() => {
     if (Array.isArray(tableRows)) {
       return tableRows.map((row) => {
-        if ('clientId' in row) {
+        if ('id' in row) {
           return {
-            id: row.clientId ?? 'unknown',
-            name: row.name,
-            email: row.email,
+            id: row.id ?? 'unknown',
+            name: row.name ?? 'unknown',
+            email: row.email ?? 'unknown',
+            apiKey: row.apiKey ?? 'unknown',
+            usageCount: row.usageCount ?? 'unknown',
+            paymentMethod: row.paymentMethod ?? 'unknown',
             status: row.status
-          } as IUserManagement;
+          } as IMonitoringLogs;
         }
         return row;
       });
@@ -80,8 +81,8 @@ const MonitoringLogstable: React.FC<ITableProps> = ({
   };
 
   const renderCell = useCallback(
-    (item: IUserManagement, columnKey: React.Key) => {
-      const cellValue = item[columnKey as keyof IUserManagement];
+    (item: IMonitoringLogs, columnKey: React.Key) => {
+      const cellValue = item[columnKey as keyof IMonitoringLogs];
       switch (columnKey) {
         case 'name': {
           return <p className="line-clamp-1">{cellValue}</p>;
@@ -110,23 +111,6 @@ const MonitoringLogstable: React.FC<ITableProps> = ({
             </Chip>
           );
         }
-
-        // case 'actions':
-        //   return (
-        //     <CustomDropDown Icon={AddIcon} className="cursor-pointer">
-        //       {UserManagementOptions.map((option) => (
-        //         <DropdownItem
-        //           textValue={option.label}
-        //           key={option.label}
-        //           onPress={() => alert(option.label)}
-        //         >
-        //           <p className="capitalize">
-        //             {item.status === 'active' ? 'Deactivate' : 'Activate'}
-        //           </p>
-        //         </DropdownItem>
-        //       ))}
-        //     </CustomDropDown>
-        //   );
       }
     },
     []

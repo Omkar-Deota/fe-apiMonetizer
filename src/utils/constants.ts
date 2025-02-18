@@ -1,7 +1,6 @@
 import {
   DashboardIcon,
   UserManagement,
-  ApiKeyManagementIcon,
   ManageSubscription,
   MonitoringLogsIcon,
   SettingsIcon,
@@ -13,6 +12,7 @@ import {
 import { ISubscriptionStatisticsCard } from '../components/cards/types';
 import { TableColumns } from '../components/table/table.type';
 import {
+  IApiManagement,
   IMonitoringLogs,
   IUserManagement
 } from '../pages/userManagement/userManagement.type';
@@ -51,9 +51,10 @@ export const sidePanelItems: SidePanelItem[] = [
   },
   {
     key: 'api-key-management',
-    label: 'Api Key Management',
+    label: 'Your Api Keys',
     url: '/app/api-key-management',
-    Icon: ApiKeyManagementIcon
+    Icon: MonitoringLogsIcon,
+    requiredRoles: USER_ROLES.USER
   },
   {
     key: 'manage-subscription',
@@ -140,6 +141,11 @@ export const UserManagementOptions = [
   { label: 'Inactive', value: 'inactive' }
 ];
 
+export const ApiManagementOptions = [
+  { label: 'Active', value: 'active' },
+  { label: 'Inactive', value: 'inactive' }
+];
+
 export const UserManagementColumn: TableColumns[] = [
   { uid: 'name', name: 'User Name' },
   { uid: 'email', name: 'Email' },
@@ -147,6 +153,15 @@ export const UserManagementColumn: TableColumns[] = [
   { uid: 'apiDescription', name: 'API Description' },
   { uid: 'usageCount', name: 'Usage Count' },
   { uid: 'subscriptionPlan', name: 'Subscription Plan' },
+  { uid: 'status', name: 'Status' }
+];
+
+export const ApiManagementColumn: TableColumns[] = [
+  { uid: 'id', name: 'ID' },
+  { uid: 'apiKey', name: 'API Key' },
+  { uid: 'apiDescription', name: 'API Description' },
+  { uid: 'createdDate', name: 'Created Date' },
+  { uid: 'usageCount', name: 'Usage Count' },
   { uid: 'status', name: 'Status' }
 ];
 
@@ -377,4 +392,55 @@ export const invoiceData = [
   { date: '27/10/2020', amount: '$99' },
   { date: '27/10/2020', amount: '$99' },
   { date: '27/10/2020', amount: '$99' }
+];
+
+export const ApiManagementData: IApiManagement[] = [
+  {
+    id: 'abcd785xy-po',
+    apiKey: 'abcd78-5xy-pox90-llk7-ld741',
+    apiDescription: 'API for user management',
+    createdDate: '12/12/2023',
+    usageCount: '100/150',
+    status: 'active'
+  },
+  {
+    id: 'abcd785xy-p7',
+    apiKey: 'abcd7-85xy-as7dpo-85d5f',
+    apiDescription: 'API for user management',
+    createdDate: '12/12/2023',
+    usageCount: '100/150',
+    status: 'active'
+  },
+  {
+    id: 'abcd785xy-p2',
+    apiKey: 'abcd7-85xy-as7dpo-85d5f',
+    apiDescription: 'API for user management',
+    createdDate: '12/12/2023',
+    usageCount: '100/150',
+    status: 'active'
+  },
+  {
+    id: 'abcd785xy-p45',
+    apiKey: 'abcd7-85xy-as7dpo-85d5f',
+    apiDescription: 'API for user management',
+    createdDate: '12/12/2023',
+    usageCount: '100/150',
+    status: 'active'
+  },
+  {
+    id: 'abcd785xy-p796',
+    apiKey: 'abcd7-85xy-as7dpo-85d5f',
+    apiDescription: 'API for user management',
+    createdDate: '12/12/2023',
+    usageCount: '100/150',
+    status: 'active'
+  },
+  {
+    id: 'abcd785xy-p47',
+    apiKey: 'abcd7-85xy-as7dpo-85d5f',
+    apiDescription: 'API for user management',
+    createdDate: '12/12/2023',
+    usageCount: '100/150',
+    status: 'active'
+  }
 ];

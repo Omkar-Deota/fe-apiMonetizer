@@ -41,7 +41,7 @@ const SubscriptionStatisticsCard: React.FC<ISubscriptionStatisticsCard> = (
   };
 
   return (
-    <CustomCard>
+    <CustomCard aria-labelledby="Dashboard-cards">
       <CardBody className="flex flex-col gap-2">
         <div className="xl:flex gap-3 text-base text-primary-gray block h-fit mb-2">
           <props.Icon />

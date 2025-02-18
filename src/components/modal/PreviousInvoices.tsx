@@ -28,10 +28,10 @@ export const PreviousInvoicesModal: React.FC<IModalProps> = ({
               <p>Amount</p>
             </div>
             <div className="max-h-48 overflow-auto">
-              {invoiceData.map((item) => (
+              {invoiceData.map((item, index) => (
                 <div
                   className="flex justify-between text-sm font-medium text-primary-gray p-2"
-                  key={item.date}
+                  key={index + 1}
                 >
                   <p>{item.date}</p>
                   <p>{item.amount}</p>

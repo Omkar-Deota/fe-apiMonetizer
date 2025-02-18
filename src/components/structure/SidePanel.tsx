@@ -1,13 +1,10 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { sidePanelItems } from '../../utils/constants';
-import { SidePanelitem } from './structure.type';
+import { ISidePanel } from './structure.type';
 import { useAppContext } from '../../context/AppContextProvider';
 
-const SidePanel: React.FC<SidePanelitem> = ({
-  isSidepanelOpen,
-  closePanel
-}) => {
+const SidePanel: React.FC<ISidePanel> = ({ isSidepanelOpen, closePanel }) => {
   const { pathname } = useLocation();
   const { userData } = useAppContext();
   const navigate = useNavigate();

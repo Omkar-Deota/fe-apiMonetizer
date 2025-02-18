@@ -1,17 +1,15 @@
 import React, { useMemo, useState } from 'react';
 import CustomBreadcrumbs from '../../components/common/CustomBreadCrumb';
-import SearchSection from '../../components/common/SearchSection';
-import UserManagementTable from '../../components/table/UserManagementTable';
-import {
-  UserManagementColumn,
-  UserManagementData,
-  UserManagementOptions
-} from '../../utils/constants';
 import CustomGreeting from '../../components/common/CustomGreeting';
-// import useUserApi from '../../hooks/api/useUserApi';
+import SearchSection from '../../components/common/SearchSection';
+import {
+  ApiManagementColumn,
+  ApiManagementData,
+  ApiManagementOptions
+} from '../../utils/constants';
+import ApiManagementTable from '../../components/table/ApiManagementTable';
 
-const UserManagement: React.FC = () => {
-  // const { getAllUsers } = useUserApi();
+const ApiKeyManagement: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedFilter, setSelectedFilter] = useState<Set<string>>(new Set());
 
@@ -19,20 +17,18 @@ const UserManagement: React.FC = () => {
     setSearchTerm(e.target.value);
   };
 
-  const handleUserFilter = (selectedOption: Set<string>) => {
+  const handleApiFilter = (selectedOption: Set<string>) => {
     setSelectedFilter(selectedOption);
   };
 
-  // console.log(getAllUsers({}), 'res');
-
   const filteredData = useMemo(() => {
-    return UserManagementData.filter((user) => {
+    return ApiManagementData.filter((api) => {
       const matchesSearch = searchTerm
-        ? user.name.toLowerCase().includes(searchTerm.toLowerCase())
+        ? api.apiDescription.toLowerCase().includes(searchTerm.toLowerCase())
         : true;
 
       const matchesFilter =
-        selectedFilter.size === 0 || selectedFilter.has(user.status);
+        selectedFilter.size === 0 || selectedFilter.has(api.status);
 
       return matchesSearch && matchesFilter;
     });
@@ -40,20 +36,20 @@ const UserManagement: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-6">
-      <CustomBreadcrumbs items="User Management" />
+      <CustomBreadcrumbs items="Api Management" />
       <CustomGreeting />
 
       <SearchSection
-        placeHolder="Search user..."
-        value={searchTerm}
+        placeHolder="Search api key..."
         handleSearch={handleSearch}
-        onFilterChange={handleUserFilter}
-        filterOption={UserManagementOptions}
+        value={searchTerm}
+        onFilterChange={handleApiFilter}
+        filterOption={ApiManagementOptions}
       />
 
-      <UserManagementTable
+      <ApiManagementTable
         tableRows={filteredData}
-        tableColumns={UserManagementColumn}
+        tableColumns={ApiManagementColumn}
         nextClick={() => {}}
         showPagination={!!filteredData.length}
         totalCount={filteredData.length}
@@ -62,4 +58,4 @@ const UserManagement: React.FC = () => {
   );
 };
 
-export default UserManagement;
+export default ApiKeyManagement;

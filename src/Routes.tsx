@@ -10,6 +10,7 @@ import UserManagement from './pages/userManagement/UserManagement';
 import MonitoringLogs from './pages/monitoringLogs/MonitoringLogs';
 import UserDashboard from './pages/dashboard/UserDashboard';
 import SubscriptionManagement from './pages/subscription/SubscriptionManagement';
+import ApiKeyManagement from './pages/apiKeyManagement/ApiKeyManagement';
 
 const Routes = () => {
   return (
@@ -63,6 +64,14 @@ const Routes = () => {
             element={
               <ProtectedRoute requiredRoles={USER_ROLES.USER}>
                 <SubscriptionManagement />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="api-key-management"
+            element={
+              <ProtectedRoute requiredRoles={USER_ROLES.USER}>
+                <ApiKeyManagement />
               </ProtectedRoute>
             }
           />
