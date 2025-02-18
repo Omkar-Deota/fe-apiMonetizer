@@ -45,7 +45,8 @@ const UserManagementTable: React.FC<ITableProps> = ({
         if ('id' in row) {
           return {
             id: row.id ?? 'unknown',
-            name: row.name ?? 'unknown',
+            firstName: row.firstName ?? 'unknown',
+            lastName: row.lastName ?? 'unknown',
             email: row.email ?? 'unknown',
             apiKey: row.apiKey ?? 'unknown',
             apiDescription: row.apiDescription ?? 'unknown',
@@ -87,8 +88,10 @@ const UserManagementTable: React.FC<ITableProps> = ({
     (item: IUserManagement, columnKey: React.Key) => {
       const cellValue = item[columnKey as keyof IUserManagement];
       switch (columnKey) {
-        case 'name': {
-          return <p className="line-clamp-1">{cellValue}</p>;
+        case 'userName': {
+          return (
+            <p className="line-clamp-1">{item.firstName ?? item.lastName}</p>
+          );
         }
         case 'email': {
           return <p className="line-clamp-1">{cellValue}</p>;

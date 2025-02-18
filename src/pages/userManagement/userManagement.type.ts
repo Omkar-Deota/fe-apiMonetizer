@@ -1,6 +1,7 @@
 export interface ITableRows {
   id: string;
-  name?: string;
+  firstName?: string;
+  lastName?: string;
   email?: string;
   apiKey?: string;
   apiDescription?: string;
@@ -13,7 +14,8 @@ export interface ITableRows {
 }
 export interface IUserManagement {
   id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   apiKey: string;
   apiDescription: string;

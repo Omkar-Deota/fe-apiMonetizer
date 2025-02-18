@@ -4,12 +4,12 @@ import SearchSection from '../../components/common/SearchSection';
 import UserManagementTable from '../../components/table/UserManagementTable';
 import {
   UserManagementColumn,
-  // UserManagementData,
   UserManagementOptions
 } from '../../utils/constants';
 import CustomGreeting from '../../components/common/CustomGreeting';
 import useUserApi from '../../hooks/api/useUserApi';
 import { IUserManagement } from './userManagement.type';
+import { Spinner } from '@heroui/react';
 
 const UserManagement: React.FC = () => {
   const { getAllUsers } = useUserApi();
@@ -17,6 +17,7 @@ const UserManagement: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedFilter, setSelectedFilter] = useState<Set<string>>(new Set());
   const [userData, setUserData] = useState<IUserManagement[]>([]);
+  const [userDataLoader, setUserDataLoader] = useState<boolean>(false);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -27,6 +28,7 @@ const UserManagement: React.FC = () => {
   };
 
   const fetchUser = useCallback(async () => {
+    setUserDataLoader(true);
     const { response, success } = await getAllUsers<IUserManagement[]>({});
 
     if (!success) {
@@ -34,12 +36,14 @@ const UserManagement: React.FC = () => {
     }
 
     setUserData(response);
+    setUserDataLoader(false);
   }, [getAllUsers]);
 
   const filteredData = useMemo(() => {
     return userData.filter((user) => {
       const matchesSearch = searchTerm
-        ? user.name.toLowerCase().includes(searchTerm.toLowerCase())
+        ? user.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          user.lastName.toLowerCase().includes(searchTerm.toLowerCase())
         : true;
 
       const matchesFilter =
@@ -48,6 +52,25 @@ const UserManagement: React.FC = () => {
       return matchesSearch && matchesFilter;
     });
   }, [searchTerm, selectedFilter, userData]);
+
+  const renderUserData = () => {
+    if (userData.length === 0)
+      return (
+        <p className="text-2xl text-center font-medium text-dark-gray">
+          No Users Found
+        </p>
+      );
+
+    return (
+      <UserManagementTable
+        tableRows={filteredData}
+        tableColumns={UserManagementColumn}
+        nextClick={() => {}}
+        showPagination={!!filteredData.length}
+        totalCount={filteredData.length}
+      />
+    );
+  };
 
   useEffect(() => {
     fetchUser();
@@ -66,13 +89,7 @@ const UserManagement: React.FC = () => {
         filterOption={UserManagementOptions}
       />
 
-      <UserManagementTable
-        tableRows={filteredData}
-        tableColumns={UserManagementColumn}
-        nextClick={() => {}}
-        showPagination={!!filteredData.length}
-        totalCount={filteredData.length}
-      />
+      {userDataLoader ? <Spinner size="lg" /> : renderUserData()}
     </div>
   );
 };
