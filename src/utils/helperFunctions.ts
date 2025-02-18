@@ -8,10 +8,10 @@ export const isObjectEmpty = (obj: unknown): boolean => {
 };
 
 const statusToColor: Record<string, ColorT> = {
-  active: 'success',
-  inactive: 'danger',
-  success: 'success',
-  fail: 'danger'
+  ACTIVE: 'success',
+  INACTIVE: 'danger',
+  SUCCESS: 'success',
+  FAILED: 'danger'
 };
 
 export const getColor = (status: string): ColorT =>

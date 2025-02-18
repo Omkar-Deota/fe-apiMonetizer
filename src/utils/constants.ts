@@ -13,8 +13,7 @@ import { ISubscriptionStatisticsCard } from '../components/cards/types';
 import { TableColumns } from '../components/table/table.type';
 import {
   IApiManagement,
-  IMonitoringLogs,
-  IUserManagement
+  IMonitoringLogs
 } from '../pages/userManagement/userManagement.type';
 import { SidePanelItem } from '../types/api.type';
 import { USER_ROLES } from './enum';
@@ -153,7 +152,7 @@ export const UserManagementColumn: TableColumns[] = [
   { uid: 'apiDescription', name: 'API Description' },
   { uid: 'usageCount', name: 'Usage Count' },
   { uid: 'subscriptionPlan', name: 'Subscription Plan' },
-  { uid: 'status', name: 'Status' }
+  { uid: 'userStatus', name: 'User Status' }
 ];
 
 export const ApiManagementColumn: TableColumns[] = [
@@ -174,108 +173,108 @@ export const MonitoringLogsColumn: TableColumns[] = [
   { uid: 'status', name: 'Status' }
 ];
 
-export const UserManagementData: IUserManagement[] = [
-  {
-    id: '1',
-    name: 'John Doe',
-    email: 'john@example.com',
-    apiKey: 'abc123ddd',
-    apiDescription: 'API for user management',
-    usageCount: '100/150',
-    subscriptionPlan: 'Basic',
-    status: 'active'
-  },
-  {
-    id: '2',
-    name: 'Jane Smith',
-    email: 'jane@example.com',
-    apiKey: 'def456',
-    apiDescription: 'API for user management',
-    usageCount: '50/50',
-    subscriptionPlan: 'Premium',
-    status: 'inactive'
-  },
-  {
-    id: '3',
-    name: 'Bob Johnson',
-    email: 'bob@example.com',
-    apiKey: 'ghi789',
-    apiDescription: 'API for user management',
-    usageCount: '75/100',
-    subscriptionPlan: 'Basic',
-    status: 'active'
-  },
-  {
-    id: '4',
-    name: 'Alice Brown',
-    email: 'alice@example.com',
-    apiKey: 'jkl012',
-    apiDescription: 'API for user management',
-    usageCount: '25/35',
-    subscriptionPlan: 'Premium',
-    status: 'inactive'
-  },
-  {
-    id: '5',
-    name: 'Charlie Wilson',
-    email: 'charlie@example.com',
-    apiKey: 'mno345',
-    apiDescription: 'API for user management',
-    usageCount: '90/90',
-    subscriptionPlan: 'Basic',
-    status: 'active'
-  },
-  {
-    id: '6',
-    name: 'Diana Lee',
-    email: 'diana@example.com',
-    apiKey: 'pqr678',
-    apiDescription: 'API for user management',
-    usageCount: '60/60',
-    subscriptionPlan: 'Premium',
-    status: 'inactive'
-  },
-  {
-    id: '7',
-    name: 'Eva Green',
-    email: 'eva@example.com',
-    apiKey: 'stu901',
-    apiDescription: 'API for user management',
-    usageCount: '40/50',
-    subscriptionPlan: 'Basic',
-    status: 'active'
-  },
-  {
-    id: '8',
-    name: 'Frank White',
-    email: 'frank@example.com',
-    apiKey: 'vwx234',
-    apiDescription: 'API for user management',
-    usageCount: '80/99',
-    subscriptionPlan: 'Premium',
-    status: 'inactive'
-  },
-  {
-    id: '9',
-    name: 'Grace Taylor',
-    email: 'grace@example.com',
-    apiKey: 'yz0123',
-    apiDescription: 'API for user management',
-    usageCount: '30/500',
-    subscriptionPlan: 'Basic',
-    status: 'active'
-  },
-  {
-    id: '10',
-    name: 'Henry Harris',
-    email: 'henry@example.com',
-    apiKey: '456789',
-    apiDescription: 'API for user management',
-    usageCount: '70/200',
-    subscriptionPlan: 'Premium',
-    status: 'inactive'
-  }
-];
+// export const UserManagementData: IUserManagement[] = [
+//   {
+//     id: '1',
+//     name: 'John Doe',
+//     email: 'john@example.com',
+//     apiKey: 'abc123ddd',
+//     apiDescription: 'API for user management',
+//     usageCount: '100/150',
+//     subscriptionPlan: 'Basic',
+//     status: 'active'
+//   },
+//   {
+//     id: '2',
+//     name: 'Jane Smith',
+//     email: 'jane@example.com',
+//     apiKey: 'def456',
+//     apiDescription: 'API for user management',
+//     usageCount: '50/50',
+//     subscriptionPlan: 'Premium',
+//     status: 'inactive'
+//   },
+//   {
+//     id: '3',
+//     name: 'Bob Johnson',
+//     email: 'bob@example.com',
+//     apiKey: 'ghi789',
+//     apiDescription: 'API for user management',
+//     usageCount: '75/100',
+//     subscriptionPlan: 'Basic',
+//     status: 'active'
+//   },
+//   {
+//     id: '4',
+//     name: 'Alice Brown',
+//     email: 'alice@example.com',
+//     apiKey: 'jkl012',
+//     apiDescription: 'API for user management',
+//     usageCount: '25/35',
+//     subscriptionPlan: 'Premium',
+//     status: 'inactive'
+//   },
+//   {
+//     id: '5',
+//     name: 'Charlie Wilson',
+//     email: 'charlie@example.com',
+//     apiKey: 'mno345',
+//     apiDescription: 'API for user management',
+//     usageCount: '90/90',
+//     subscriptionPlan: 'Basic',
+//     status: 'active'
+//   },
+//   {
+//     id: '6',
+//     name: 'Diana Lee',
+//     email: 'diana@example.com',
+//     apiKey: 'pqr678',
+//     apiDescription: 'API for user management',
+//     usageCount: '60/60',
+//     subscriptionPlan: 'Premium',
+//     status: 'inactive'
+//   },
+//   {
+//     id: '7',
+//     name: 'Eva Green',
+//     email: 'eva@example.com',
+//     apiKey: 'stu901',
+//     apiDescription: 'API for user management',
+//     usageCount: '40/50',
+//     subscriptionPlan: 'Basic',
+//     status: 'active'
+//   },
+//   {
+//     id: '8',
+//     name: 'Frank White',
+//     email: 'frank@example.com',
+//     apiKey: 'vwx234',
+//     apiDescription: 'API for user management',
+//     usageCount: '80/99',
+//     subscriptionPlan: 'Premium',
+//     status: 'inactive'
+//   },
+//   {
+//     id: '9',
+//     name: 'Grace Taylor',
+//     email: 'grace@example.com',
+//     apiKey: 'yz0123',
+//     apiDescription: 'API for user management',
+//     usageCount: '30/500',
+//     subscriptionPlan: 'Basic',
+//     status: 'active'
+//   },
+//   {
+//     id: '10',
+//     name: 'Henry Harris',
+//     email: 'henry@example.com',
+//     apiKey: '456789',
+//     apiDescription: 'API for user management',
+//     usageCount: '70/200',
+//     subscriptionPlan: 'Premium',
+//     status: 'inactive'
+//   }
+// ];
 
 export const MonitoringLogsData: IMonitoringLogs[] = [
   {

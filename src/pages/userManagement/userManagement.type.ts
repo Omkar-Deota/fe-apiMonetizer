@@ -9,6 +9,7 @@ export interface ITableRows {
   status?: string;
   paymentMethod?: string;
   createdDate?: string;
+  userStatus?: string;
 }
 export interface IUserManagement {
   id: string;
@@ -18,7 +19,7 @@ export interface IUserManagement {
   apiDescription: string;
   usageCount: string;
   subscriptionPlan: string;
-  status: string;
+  userStatus: string;
 }
 export interface IMonitoringLogs {
   id: string;

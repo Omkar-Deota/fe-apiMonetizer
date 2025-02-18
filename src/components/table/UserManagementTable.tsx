@@ -51,7 +51,7 @@ const UserManagementTable: React.FC<ITableProps> = ({
             apiDescription: row.apiDescription ?? 'unknown',
             usageCount: row.usageCount ?? 'unknown',
             subscriptionPlan: row.subscriptionPlan ?? 'unknown',
-            status: row.status
+            userStatus: row.userStatus ?? 'unknown'
           } as IUserManagement;
         }
         return row;
@@ -105,15 +105,15 @@ const UserManagementTable: React.FC<ITableProps> = ({
         case 'subscriptionPlan': {
           return <p>{cellValue}</p>;
         }
-        case 'status': {
+        case 'userStatus': {
           return (
             <Chip
               className="capitalize flex justify-center"
-              color={getColor(item.status)}
+              color={getColor(item.userStatus)}
               size="md"
               variant="dot"
             >
-              {item.status}
+              {item.userStatus}
             </Chip>
           );
         }

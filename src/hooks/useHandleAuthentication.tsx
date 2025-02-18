@@ -25,16 +25,14 @@ const useHandleAuthentication = () => {
       email: auth0User.email,
       authExternalId: auth0User.sub,
       picture: auth0User.picture,
-      emailVerified: auth0User.email_verified || false
+      emailVerified: auth0User.email_verified ?? false
     };
 
-    try {
-      const response = await authLogin<IUser>(payload);
-      if (!response.success) {
-        navigate('/error');
-        return;
-      }
-    } catch {
+    console.log(payload, 'payload');
+
+    const authResponse = await authLogin<IUser>(payload);
+
+    if (!authResponse.success) {
       navigate('/error');
       return;
     }
@@ -55,20 +53,6 @@ const useHandleAuthentication = () => {
     if (response.role === USER_ROLES.ADMIN) {
       navigate('/app/admin-dashboard');
     } else {
-      //   // check if subscription
-      //   const { response } = await getUserSelfData<UserSelfResponse>(false);
-      //   if (
-      //     [userStatus.active, userStatus.inactive].includes(
-      //       response?.user?.status
-      //     )
-      //   ) {
-      //     expectedPath = '/app/user-dashboard';
-      //   } else {
-      //     expectedPath = '/home';
-      //   }
-      // } else {
-      //   expectedPath = '/home';
-      // }
       navigate('/app/user-dashboard');
     }
   }, [
