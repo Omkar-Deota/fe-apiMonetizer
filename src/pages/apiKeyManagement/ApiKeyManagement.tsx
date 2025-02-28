@@ -8,10 +8,18 @@ import {
   ApiManagementOptions
 } from '../../utils/constants';
 import ApiManagementTable from '../../components/table/ApiManagementTable';
+import CustomButton from '../../components/common/CustomButton';
+import { AddIcon } from '../../assets/icons';
+import { AddApiModal } from '../../components/modal/AddApiModal';
+import { useAppContext } from '../../context/AppContextProvider';
+import { USER_ROLES } from '../../utils/enum';
 
 const ApiKeyManagement: React.FC = () => {
+  const { userData } = useAppContext();
+
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedFilter, setSelectedFilter] = useState<Set<string>>(new Set());
+  const [showApiAddModal, setShowApiAddModal] = useState<boolean>(false);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -34,18 +42,30 @@ const ApiKeyManagement: React.FC = () => {
     });
   }, [searchTerm, selectedFilter]);
 
+  const handleAddApiModal = () => {
+    setShowApiAddModal(true);
+  };
+
   return (
     <div className="flex flex-col gap-6">
       <CustomBreadcrumbs items="Api Management" />
       <CustomGreeting />
 
-      <SearchSection
-        placeHolder="Search api key..."
-        handleSearch={handleSearch}
-        value={searchTerm}
-        onFilterChange={handleApiFilter}
-        filterOption={ApiManagementOptions}
-      />
+      <div className="flex flex-col gap-6 items-end">
+        {userData?.role === USER_ROLES.USER && (
+          <CustomButton color="primary" onClick={handleAddApiModal}>
+            <AddIcon /> New Api Key
+          </CustomButton>
+        )}
+
+        <SearchSection
+          placeHolder="Search api key..."
+          handleSearch={handleSearch}
+          value={searchTerm}
+          onFilterChange={handleApiFilter}
+          filterOption={ApiManagementOptions}
+        />
+      </div>
 
       <ApiManagementTable
         tableRows={filteredData}
@@ -54,6 +74,13 @@ const ApiKeyManagement: React.FC = () => {
         showPagination={!!filteredData.length}
         totalCount={filteredData.length}
       />
+
+      {showApiAddModal && (
+        <AddApiModal
+          isOpen={showApiAddModal}
+          onClose={() => setShowApiAddModal(false)}
+        />
+      )}
     </div>
   );
 };
