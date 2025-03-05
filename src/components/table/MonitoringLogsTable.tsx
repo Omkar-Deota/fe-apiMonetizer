@@ -43,7 +43,6 @@ const MonitoringLogstable: React.FC<ITableProps> = ({
         if ('id' in row) {
           return {
             id: row.id ?? 'unknown',
-            name: row.name ?? 'unknown',
             email: row.email ?? 'unknown',
             apiKey: row.apiKey ?? 'unknown',
             usageCount: row.usageCount ?? 'unknown',
